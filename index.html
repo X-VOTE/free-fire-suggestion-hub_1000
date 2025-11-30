@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garena Free Fire - Suggestion Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the aggressive gaming aesthetic */
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto+Mono:wght@400;700&display=swap');
+        .font-oswald { font-family: 'Oswald', sans-serif; }
+        .font-mono { font-family: 'Roboto Mono', monospace; }
+        
+        /* DARK MODE BASE COLORS */
+        .bg-freefire-dark { background-color: #151515; } /* Main Background */
+        .text-freefire-gold { color: #D4AF37; } /* ACCENT GOLD */ 
+        
+        /* Gold Button Styling */
+        .btn-gold-submit { 
+            background-color: #D4AF37; 
+            color: #1a1a1a; 
+            transition: all 0.3s ease-in-out;
+            font-weight: 700;
+        }
+        .btn-gold-submit:hover {
+            background-color: #e5b84c; 
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6); 
+            transform: translateY(-2px);
+        }
+        
+        /* Header background styling for a sophisticated touch (Dark) */
+        .header-bg {
+            background-color: #1f1f1f; /* Slightly lighter dark for header */
+            border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+        }
+
+        /* Input styling for dark theme */
+        .input-dark {
+            background-color: #2b2b2b;
+            border-color: #444444;
+            color: white;
+        }
+        .input-dark:focus {
+             border-color: #D4AF37;
+             box-shadow: 0 0 0 1px #D4AF37;
+        }
+    </style>
+</head>
+<body class="bg-freefire-dark min-h-screen font-oswald text-gray-100">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-40 header-bg shadow-2xl">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            
+            <!-- Logo -->
+            <a href="index.html" class="text-3xl font-extrabold tracking-widest text-white">
+                <span class="text-freefire-gold">FREE FIRE</span> HUB
+            </a>
+
+            <!-- Right Side (Login/User) -->
+            <div id="nav-right" class="flex items-center space-x-4">
+                
+                <!-- Logged In State (Hidden by default, shown by script.js) -->
+                <div id="logged-in-user" class="hidden flex items-center space-x-4 border border-gray-700 rounded-full pr-1">
+                    <!-- Gold Balance Display -->
+                    <div class="flex items-center space-x-1 p-2 bg-gray-700 text-white rounded-full text-sm font-mono shadow-inner">
+                        <!-- Updated Star Icon (Gold Star) -->
+                        <svg class="w-4 h-4 text-freefire-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <span id="user-gold" class="tracking-wide">5,000</span>
+                    </div>
+                    <!-- Username -->
+                    <span id="user-username" class="font-bold text-gray-300 ml-2">GamerX</span>
+                    
+                    <!-- Logout Button -->
+                    <button onclick="simulateLogout()" 
+                            class="px-3 py-1 ml-2 bg-red-600 text-white rounded-full text-xs font-bold hover:bg-red-500 transition duration-200 shadow-md">
+                        <span class="hidden sm:inline">Logout</span>
+                        <span class="sm:hidden">X</span>
+                    </button>
+                </div>
+
+                <!-- Logged Out State (Shown by default, hidden by script.js) -->
+                <a id="login-button" href="login.html" 
+                   class="px-6 py-2 btn-gold-submit font-bold rounded-full shadow-lg uppercase text-sm">
+                    Connect Account
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- Hero Section - More impactful design -->
+        <section class="mb-16 bg-gray-900 text-white p-8 sm:p-16 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden relative border-4 border-gray-800">
+            <!-- Background Image Placeholder (High contrast, dark theme) -->
+            <img src="https://placehold.co/1200x400/0a0a0a/D4AF37?text=FREE+FIRE+COMMUNITY+COUNCIL" 
+                 alt="Free Fire hero banner" class="absolute inset-0 w-full h-full object-cover opacity-30">
+            
+            <div class="relative z-10">
+                <h1 class="text-6xl md:text-7xl font-extrabold text-freefire-gold mb-4 tracking-tight leading-none">
+                    COMMUNITY VOTE <span class="text-white">COUNCIL</span>
+                </h1>
+                <p class="text-xl text-gray-300 max-w-3xl mb-8 font-oswald font-light">
+                    Suggest, vote, and help shape the next era of Garena Free Fire. Every high-voted idea is reviewed by the development team.
+                </p>
+                <a href="#submit-idea" class="px-8 py-3 btn-gold-submit font-bold rounded-full shadow-xl uppercase text-base inline-block">
+                    Submit Your Master Plan
+                </a>
+            </div>
+        </section>
+
+        <!-- New Suggestion Form - Dedicated Panel -->
+        <section id="submit-idea" class="mb-16 bg-[#1f1f1f] p-8 rounded-2xl shadow-2xl border border-gray-700">
+            <h2 class="text-3xl font-extrabold text-white border-b border-gray-700 pb-4 mb-6">
+                Submit Your Idea 
+            </h2>
+            <form id="add-suggestion-form" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Title -->
+                    <input type="text" id="suggestion-title" placeholder="Suggestion Title (e.g., New Character Skin)" required
+                           class="col-span-1 md:col-span-2 p-4 rounded-lg input-dark focus:ring-1 transition duration-200 shadow-sm">
+                    <!-- Category -->
+                    <select id="suggestion-category" required
+                            class="p-4 rounded-lg input-dark focus:ring-1 transition duration-200 shadow-sm appearance-none">
+                        <option value="">Select Category</option>
+                        <option value="Gameplay">Gameplay</option>
+                        <option value="Map">Map/Location</option>
+                        <option value="Weapon">Weapon</option>
+                        <option value="Cosmetic">Cosmetic</option>
+                        <option value="UI">UI/Quality of Life</option>
+                    </select>
+                </div>
+                <!-- Description -->
+                <textarea id="suggestion-description" rows="4" placeholder="Describe your suggestion in detail (Max 500 characters)" required maxlength="500"
+                          class="w-full p-4 rounded-lg input-dark focus:ring-1 transition duration-200 shadow-sm"></textarea>
+                
+                <button type="submit" 
+                        class="px-10 py-3 btn-gold-submit font-bold rounded-full uppercase tracking-wider shadow-lg">
+                    Submit Suggestion & Cast Initial Vote
+                </button>
+                <p class="text-sm text-gray-400 mt-3">Your idea must be original. Submitting automatically casts the first vote!</p>
+            </form>
+        </section>
+
+        <!-- Suggestion Feed -->
+        <section>
+            <h2 class="text-4xl font-extrabold text-white mb-10 border-b-4 border-freefire-gold pb-4 tracking-tight">
+                Top Voted Suggestions
+            </h2>
+
+            <div id="suggestions-gallery" class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
+                <!-- Suggestions will be injected here by script.js with dark styling -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-10">
+                <a href="login.html" 
+                   class="px-10 py-3 bg-gray-700 text-gray-100 font-bold rounded-full shadow-lg uppercase text-base tracking-wider hover:bg-gray-600 border border-gray-600 transition duration-300">
+                    Load More Suggestions (Login Required)
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Central JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
