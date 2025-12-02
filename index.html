@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garena Free Fire - Suggestion Hub</title>
+    <title>Garena Free Fire - Suggestion Hub (Static)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom styles for the aggressive gaming aesthetic */
@@ -31,7 +31,8 @@
         /* Header background styling for a sophisticated touch (Dark) */
         .header-bg {
             background-color: #1f1f1f; /* Slightly lighter dark for header */
-            border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+            /* Enhanced border for UI improvement */
+            border-bottom: 3px solid rgba(212, 175, 55, 0.6); 
         }
 
         /* Input styling for dark theme */
@@ -39,89 +40,107 @@
             background-color: #2b2b2b;
             border-color: #444444;
             color: white;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
         .input-dark:focus {
+             outline: none;
              border-color: #D4AF37;
-             box-shadow: 0 0 0 1px #D4AF37;
+             box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.5);
         }
+
+        /* Responsive Hero Text Adjustments */
+        .hero-title {
+            font-size: 2.5rem; /* Mobile */
+        }
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 4rem; /* Tablet/Desktop */
+            }
+        }
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 5rem; /* Large Desktop */
+            }
+        }
+
+        /* Card Animation/Hover Effect */
+        .suggestion-card {
+             transition: all 0.5s ease-in-out;
+        }
+        .suggestion-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            border-color: #D4AF37;
+        }
+
+        /* Vote Button Style (Used for redirecting to login) */
+        .btn-vote-redirect {
+            background-color: #333333; /* Darker gray background */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border: 1px solid #444444;
+        }
+        .btn-vote-redirect:hover {
+            background-color: #444444; /* Slightly lighter on hover */
+            border-color: #D4AF37;
+        }
+
     </style>
 </head>
 <body class="bg-freefire-dark min-h-screen font-oswald text-gray-100">
 
-    <!-- Header & Navigation -->
+    <!-- Header & Navigation (Static, Mobile Friendly) -->
     <header class="sticky top-0 z-40 header-bg shadow-2xl">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-between items-center">
             
-            <!-- Logo -->
-            <a href="index.html" class="text-3xl font-extrabold tracking-widest text-white">
+            <!-- Logo - NOW redirects to login.html -->
+            <a href="login.html" class="text-2xl sm:text-3xl font-extrabold tracking-widest text-white">
                 <span class="text-freefire-gold">FREE FIRE</span> HUB
             </a>
 
-            <!-- Right Side (Login/User) -->
-            <div id="nav-right" class="flex items-center space-x-4">
-                
-                <!-- Logged In State (Hidden by default, shown by script.js) -->
-                <div id="logged-in-user" class="hidden flex items-center space-x-4 border border-gray-700 rounded-full pr-1">
-                    <!-- Gold Balance Display -->
-                    <div class="flex items-center space-x-1 p-2 bg-gray-700 text-white rounded-full text-sm font-mono shadow-inner">
-                        <!-- Updated Star Icon (Gold Star) -->
-                        <svg class="w-4 h-4 text-freefire-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        <span id="user-gold" class="tracking-wide">5,000</span>
-                    </div>
-                    <!-- Username -->
-                    <span id="user-username" class="font-bold text-gray-300 ml-2">GamerX</span>
-                    
-                    <!-- Logout Button -->
-                    <button onclick="simulateLogout()" 
-                            class="px-3 py-1 ml-2 bg-red-600 text-white rounded-full text-xs font-bold hover:bg-red-500 transition duration-200 shadow-md">
-                        <span class="hidden sm:inline">Logout</span>
-                        <span class="sm:hidden">X</span>
-                    </button>
-                </div>
-
-                <!-- Logged Out State (Shown by default, hidden by script.js) -->
-                <a id="login-button" href="login.html" 
-                   class="px-6 py-2 btn-gold-submit font-bold rounded-full shadow-lg uppercase text-sm">
-                    Connect Account
-                </a>
-            </div>
+            <!-- Connect Account Button (Only logged-out state exists) -->
+            <a id="login-button" href="login.html" 
+               class="px-4 py-1 sm:px-6 sm:py-2 btn-gold-submit font-bold rounded-full shadow-lg uppercase text-xs sm:text-sm">
+                Connect Account
+            </a>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
 
-        <!-- Hero Section - More impactful design -->
-        <section class="mb-16 bg-gray-900 text-white p-8 sm:p-16 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden relative border-4 border-gray-800">
-            <!-- Background Image Placeholder (High contrast, dark theme) -->
-            <img src="https://placehold.co/1200x400/0a0a0a/D4AF37?text=FREE+FIRE+COMMUNITY+COUNCIL" 
-                 alt="Free Fire hero banner" class="absolute inset-0 w-full h-full object-cover opacity-30">
+        <!-- Hero Section - Fully Responsive -->
+        <section class="mb-10 sm:mb-16 bg-gray-900 text-white p-6 sm:p-16 rounded-2xl sm:rounded-3xl shadow-2xl shadow-black/80 overflow-hidden relative border-4 border-gray-800">
+            <!-- Background Image Placeholder -->
+            <img src="https://placehold.co/1200x400/0a0a0a/D4AF37?text=COMMUNITY+COUNCIL" 
+                 alt="Free Fire hero banner" class="absolute inset-0 w-full h-full object-cover opacity-30"
+                 onerror="this.style.display='none'; this.closest('section').style.backgroundColor='#1a1a1a';">
             
             <div class="relative z-10">
-                <h1 class="text-6xl md:text-7xl font-extrabold text-freefire-gold mb-4 tracking-tight leading-none">
+                <h1 class="hero-title font-extrabold text-freefire-gold mb-3 sm:mb-4 tracking-tight leading-tight sm:leading-none">
                     COMMUNITY VOTE <span class="text-white">COUNCIL</span>
                 </h1>
-                <p class="text-xl text-gray-300 max-w-3xl mb-8 font-oswald font-light">
+                <p class="text-sm sm:text-xl text-gray-300 max-w-3xl mb-6 sm:mb-8 font-oswald font-light">
                     Suggest, vote, and help shape the next era of Garena Free Fire. Every high-voted idea is reviewed by the development team.
                 </p>
-                <a href="#submit-idea" class="px-8 py-3 btn-gold-submit font-bold rounded-full shadow-xl uppercase text-base inline-block">
+                <!-- Links to submit form - THIS KEEPS ITS FUNCTIONALITY -->
+                <a href="#submit-idea" class="px-6 py-2 sm:px-8 sm:py-3 btn-gold-submit font-bold rounded-full shadow-xl uppercase text-sm sm:text-base inline-block">
                     Submit Your Master Plan
                 </a>
             </div>
         </section>
 
-        <!-- New Suggestion Form - Dedicated Panel -->
-        <section id="submit-idea" class="mb-16 bg-[#1f1f1f] p-8 rounded-2xl shadow-2xl border border-gray-700">
-            <h2 class="text-3xl font-extrabold text-white border-b border-gray-700 pb-4 mb-6">
-                Submit Your Idea 
+        <!-- New Suggestion Form - Submitting redirects to login.html -->
+        <section id="submit-idea" class="mb-10 sm:mb-16 bg-[#1f1f1f] p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-2xl border border-gray-700">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white border-b border-gray-700 pb-3 sm:pb-4 mb-5 sm:mb-6">
+                Submit Your Idea (Login Required)
             </h2>
-            <form id="add-suggestion-form" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Title -->
+            <!-- FORM REDIRECTS TO LOGIN.HTML ON SUBMISSION -->
+            <form action="login.html" method="GET" class="space-y-4 sm:space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                     <input type="text" id="suggestion-title" placeholder="Suggestion Title (e.g., New Character Skin)" required
-                           class="col-span-1 md:col-span-2 p-4 rounded-lg input-dark focus:ring-1 transition duration-200 shadow-sm">
-                    <!-- Category -->
+                           class="col-span-1 md:col-span-2 p-3 sm:p-4 rounded-lg input-dark focus:ring-1 transition duration-200 shadow-sm text-sm">
                     <select id="suggestion-category" required
-                            class="p-4 rounded-lg input-dark focus:ring-1 transition duration-200 shadow-sm appearance-none">
+                            class="p-3 sm:p-4 rounded-lg input-dark focus:ring-1 transition duration-200 shadow-sm appearance-none text-sm">
                         <option value="">Select Category</option>
                         <option value="Gameplay">Gameplay</option>
                         <option value="Map">Map/Location</option>
@@ -130,41 +149,194 @@
                         <option value="UI">UI/Quality of Life</option>
                     </select>
                 </div>
-                <!-- Description -->
                 <textarea id="suggestion-description" rows="4" placeholder="Describe your suggestion in detail (Max 500 characters)" required maxlength="500"
-                          class="w-full p-4 rounded-lg input-dark focus:ring-1 transition duration-200 shadow-sm"></textarea>
+                          class="w-full p-3 sm:p-4 rounded-lg input-dark focus:ring-1 transition duration-200 shadow-sm text-sm"></textarea>
                 
+                <!-- This button redirects to login.html via form action -->
                 <button type="submit" 
-                        class="px-10 py-3 btn-gold-submit font-bold rounded-full uppercase tracking-wider shadow-lg">
+                        class="w-full sm:w-auto px-8 py-2 sm:px-10 sm:py-3 btn-gold-submit font-bold rounded-full uppercase tracking-wider shadow-lg text-sm">
                     Submit Suggestion & Cast Initial Vote
                 </button>
-                <p class="text-sm text-gray-400 mt-3">Your idea must be original. Submitting automatically casts the first vote!</p>
+                <p class="text-xs sm:text-sm text-gray-400 mt-2">Submission and voting require connecting your Garena account.</p>
             </form>
         </section>
 
-        <!-- Suggestion Feed -->
+        <!-- Suggestion Feed with 8 High-Vote Static Suggestions -->
         <section>
-            <h2 class="text-4xl font-extrabold text-white mb-10 border-b-4 border-freefire-gold pb-4 tracking-tight">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-6 sm:mb-10 border-b-4 border-freefire-gold pb-3 sm:pb-4 tracking-tight">
                 Top Voted Suggestions
             </h2>
 
-            <div id="suggestions-gallery" class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
-                <!-- Suggestions will be injected here by script.js with dark styling -->
+            <!-- Responsive grid: 1 column on mobile/tablet, 2 on large screens -->
+            <div id="suggestions-gallery" class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 mb-8 sm:mb-10">
+                
+                <!-- Static Suggestion Card 1 (Highest Vote) -->
+                <div class="suggestion-card bg-gray-800 p-4 sm:p-6 rounded-xl shadow-2xl transition duration-500 border-t-4 border-gray-700 hover:border-[#D4AF37]">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono font-bold uppercase text-gray-400 bg-gray-700 px-3 py-1 rounded-full tracking-wider">Gameplay</span>
+                        <span class="text-xs sm:text-sm font-semibold text-gray-400">By: RoadWarriorFF</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug">Rework Vehicle Physics & Balance</h3>
+                    <p class="text-gray-300 mb-4 text-sm line-clamp-3">Vehicles currently dominate the final circles. Implement realistic damage models and fuel consumption to make them a riskier late-game option. Faster vehicles should have less armor, slower ones should be tougher.</p>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-3 sm:pt-4 border-t border-gray-700 space-y-3 sm:space-y-0">
+                        <div class="flex items-center space-x-2 sm:space-x-3 bg-gray-700 p-2 sm:p-3 rounded-lg shadow-inner w-full sm:w-auto">
+                            <!-- Star Icon -->
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <span class="text-2xl sm:text-3xl font-mono font-extrabold text-white">9,820</span>
+                        </div>
+                        <!-- Vote button redirects to login.html -->
+                        <a href="login.html" class="px-5 py-2 sm:px-6 sm:py-3 text-sm font-bold rounded-full btn-vote-redirect text-gray-200 w-full sm:w-auto text-center">
+                            Cast Vote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Static Suggestion Card 2 -->
+                <div class="suggestion-card bg-gray-800 p-4 sm:p-6 rounded-xl shadow-2xl transition duration-500 border-t-4 border-gray-700 hover:border-[#D4AF37]">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono font-bold uppercase text-gray-400 bg-gray-700 px-3 py-1 rounded-full tracking-wider">Cosmetic</span>
+                        <span class="text-xs sm:text-sm font-semibold text-gray-400">By: SkinCollector99</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug">Mythic "Shadow Ops" Gun Skin Series</h3>
+                    <p class="text-gray-300 mb-4 text-sm line-clamp-3">Design a new top-tier animated skin line with unique kill effects for the AK-47 and M1014. The skins should feature dark obsidian and glowing red energy effects. Need more distinct rarity tiers!</p>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-3 sm:pt-4 border-t border-gray-700 space-y-3 sm:space-y-0">
+                        <div class="flex items-center space-x-2 sm:space-x-3 bg-gray-700 p-2 sm:p-3 rounded-lg shadow-inner w-full sm:w-auto">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <span class="text-2xl sm:text-3xl font-mono font-extrabold text-white">7,511</span>
+                        </div>
+                        <a href="login.html" class="px-5 py-2 sm:px-6 sm:py-3 text-sm font-bold rounded-full btn-vote-redirect text-gray-200 w-full sm:w-auto text-center">
+                            Cast Vote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Static Suggestion Card 3 -->
+                <div class="suggestion-card bg-gray-800 p-4 sm:p-6 rounded-xl shadow-2xl transition duration-500 border-t-4 border-gray-700 hover:border-[#D4AF37]">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono font-bold uppercase text-gray-400 bg-gray-700 px-3 py-1 rounded-full tracking-wider">UI/Quality of Life</span>
+                        <span class="text-xs sm:text-sm font-semibold text-gray-400">By: QOLFanatic</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug">Add Custom Crosshair Options</h3>
+                    <p class="text-gray-300 mb-4 text-sm line-clamp-3">Allow players to change the color, size, and style of their crosshair (dot, cross, T-shape). This is a basic feature in competitive games and improves accessibility for many players.</p>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-3 sm:pt-4 border-t border-gray-700 space-y-3 sm:space-y-0">
+                        <div class="flex items-center space-x-2 sm:space-x-3 bg-gray-700 p-2 sm:p-3 rounded-lg shadow-inner w-full sm:w-auto">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <span class="text-2xl sm:text-3xl font-mono font-extrabold text-white">6,105</span>
+                        </div>
+                        <a href="login.html" class="px-5 py-2 sm:px-6 sm:py-3 text-sm font-bold rounded-full btn-vote-redirect text-gray-200 w-full sm:w-auto text-center">
+                            Cast Vote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Static Suggestion Card 4 -->
+                <div class="suggestion-card bg-gray-800 p-4 sm:p-6 rounded-xl shadow-2xl transition duration-500 border-t-4 border-gray-700 hover:border-[#D4AF37]">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono font-bold uppercase text-gray-400 bg-gray-700 px-3 py-1 rounded-full tracking-wider">Weapon</span>
+                        <span class="text-xs sm:text-sm font-semibold text-gray-400">By: HeadshotKing</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug">New DMR: Long-Range Tactical Rifle</h3>
+                    <p class="text-gray-300 mb-4 text-sm line-clamp-3">Introduce a Designated Marksman Rifle (DMR) that uses AR ammo but has high headshot damage and low fire rate. It would fill the gap between snipers and assault rifles for tactical engagements.</p>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-3 sm:pt-4 border-t border-gray-700 space-y-3 sm:space-y-0">
+                        <div class="flex items-center space-x-2 sm:space-x-3 bg-gray-700 p-2 sm:p-3 rounded-lg shadow-inner w-full sm:w-auto">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <span class="text-2xl sm:text-3xl font-mono font-extrabold text-white">5,348</span>
+                        </div>
+                        <a href="login.html" class="px-5 py-2 sm:px-6 sm:py-3 text-sm font-bold rounded-full btn-vote-redirect text-gray-200 w-full sm:w-auto text-center">
+                            Cast Vote
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Static Suggestion Card 5 -->
+                <div class="suggestion-card bg-gray-800 p-4 sm:p-6 rounded-xl shadow-2xl transition duration-500 border-t-4 border-gray-700 hover:border-[#D4AF37]">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono font-bold uppercase text-gray-400 bg-gray-700 px-3 py-1 rounded-full tracking-wider">Map/Location</span>
+                        <span class="text-xs sm:text-sm font-semibold text-gray-400">By: ExplorerGuru</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug">New Area: Underwater Labs on Bermuda</h3>
+                    <p class="text-gray-300 mb-4 text-sm line-clamp-3">A small, high-tier loot area accessed via tunnels or submarine docks. This would introduce unique close-quarters combat inside the submerged structure and add verticality to the map's coastline.</p>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-3 sm:pt-4 border-t border-gray-700 space-y-3 sm:space-y-0">
+                        <div class="flex items-center space-x-2 sm:space-x-3 bg-gray-700 p-2 sm:p-3 rounded-lg shadow-inner w-full sm:w-auto">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <span class="text-2xl sm:text-3xl font-mono font-extrabold text-white">4,890</span>
+                        </div>
+                        <a href="login.html" class="px-5 py-2 sm:px-6 sm:py-3 text-sm font-bold rounded-full btn-vote-redirect text-gray-200 w-full sm:w-auto text-center">
+                            Cast Vote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Static Suggestion Card 6 -->
+                <div class="suggestion-card bg-gray-800 p-4 sm:p-6 rounded-xl shadow-2xl transition duration-500 border-t-4 border-gray-700 hover:border-[#D4AF37]">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono font-bold uppercase text-gray-400 bg-gray-700 px-3 py-1 rounded-full tracking-wider">Gameplay</span>
+                        <span class="text-xs sm:text-sm font-semibold text-gray-400">By: ProTactics</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug">Introduce a Cooldown for Gloo Wall Deployment</h3>
+                    <p class="text-gray-300 mb-4 text-sm line-clamp-3">Spamming Gloo Walls creates unbalanced close-range fights. Adding a short global cooldown (0.5-1.0 second) between deployments would reward tactical placement over sheer speed and volume.</p>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-3 sm:pt-4 border-t border-gray-700 space-y-3 sm:space-y-0">
+                        <div class="flex items-center space-x-2 sm:space-x-3 bg-gray-700 p-2 sm:p-3 rounded-lg shadow-inner w-full sm:w-auto">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <span class="text-2xl sm:text-3xl font-mono font-extrabold text-white">4,201</span>
+                        </div>
+                        <a href="login.html" class="px-5 py-2 sm:px-6 sm:py-3 text-sm font-bold rounded-full btn-vote-redirect text-gray-200 w-full sm:w-auto text-center">
+                            Cast Vote (Login Required)
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Static Suggestion Card 7 -->
+                <div class="suggestion-card bg-gray-800 p-4 sm:p-6 rounded-xl shadow-2xl transition duration-500 border-t-4 border-gray-700 hover:border-[#D4AF37]">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono font-bold uppercase text-gray-400 bg-gray-700 px-3 py-1 rounded-full tracking-wider">UI/Quality of Life</span>
+                        <span class="text-xs sm:text-sm font-semibold text-gray-400">By: MenuMaster</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug">Save Multiple Loadout Presets (Skins & Abilities)</h3>
+                    <p class="text-gray-300 mb-4 text-sm line-clamp-3">Allow players to save 3-5 different sets of character abilities, pet selections, and cosmetic skins. Switching between competitive and casual modes should be instantaneous without manually re-equipping everything.</p>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-3 sm:pt-4 border-t border-gray-700 space-y-3 sm:space-y-0">
+                        <div class="flex items-center space-x-2 sm:space-x-3 bg-gray-700 p-2 sm:p-3 rounded-lg shadow-inner w-full sm:w-auto">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <span class="text-2xl sm:text-3xl font-mono font-extrabold text-white">3,788</span>
+                        </div>
+                        <a href="login.html" class="px-5 py-2 sm:px-6 sm:py-3 text-sm font-bold rounded-full btn-vote-redirect text-gray-200 w-full sm:w-auto text-center">
+                            Cast Vote
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Static Suggestion Card 8 (Lowest listed vote) -->
+                <div class="suggestion-card bg-gray-800 p-4 sm:p-6 rounded-xl shadow-2xl transition duration-500 border-t-4 border-gray-700 hover:border-[#D4AF37]">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-mono font-bold uppercase text-gray-400 bg-gray-700 px-3 py-1 rounded-full tracking-wider">Weapon</span>
+                        <span class="text-xs sm:text-sm font-semibold text-gray-400">By: PistolPete</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug">Pistol Balance: Buff Deagle Headshot Multiplier</h3>
+                    <p class="text-gray-300 mb-4 text-sm line-clamp-3">The Desert Eagle is an iconic but underutilized weapon. Increase its headshot damage multiplier to reward skilled, accurate aiming, making it a viable early-game sidearm for high-risk, high-reward plays.</p>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-3 sm:pt-4 border-t border-gray-700 space-y-3 sm:space-y-0">
+                        <div class="flex items-center space-x-2 sm:space-x-3 bg-gray-700 p-2 sm:p-3 rounded-lg shadow-inner w-full sm:w-auto">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <span class="text-2xl sm:text-3xl font-mono font-extrabold text-white">3,025</span>
+                        </div>
+                        <a href="login.html" class="px-5 py-2 sm:px-6 sm:py-3 text-sm font-bold rounded-full btn-vote-redirect text-gray-200 w-full sm:w-auto text-center">
+                            Cast Vote
+                        </a>
+                    </div>
+                </div>
+
             </div>
             
             <!-- Load More Button -->
-            <div class="text-center mt-10">
+            <div class="text-center mt-6 sm:mt-10">
                 <a href="login.html" 
-                   class="px-10 py-3 bg-gray-700 text-gray-100 font-bold rounded-full shadow-lg uppercase text-base tracking-wider hover:bg-gray-600 border border-gray-600 transition duration-300">
-                    Load More Suggestions (Login Required)
+                   class="px-10 py-3 bg-gray-700 text-gray-100 font-bold rounded-full shadow-lg uppercase text-sm sm:text-base tracking-wider hover:bg-gray-600 border border-gray-600 transition duration-300">
+                    Load More Suggestions
                 </a>
             </div>
-
         </section>
 
-    </main>
 
-    <!-- Central JavaScript file -->
-    <script src="script.js"></script>
+    </main>
+    
 </body>
 </html>
